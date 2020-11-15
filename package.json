@@ -1,0 +1,45 @@
+{
+  "name": "cordova-plugin-iab",
+  "version": "1.0.0",
+  "description": "Cordova InAppBrowser Plugin.",
+  "cordova": {
+    "id": "cordova-plugin-iab",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricYChu/cordova-plugin-iab.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "inappbrowser"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=9.0.0"
+    },
+    {
+      "name": "cordova-ios",
+      "version": ">=6.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=9.0.0"
+    }
+  ],
+  "author": {
+    "name" : "Eric Zhu",
+    "email" : "eric@zhu.email",
+    "url" : "https://github.com/EricYChu"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EricYChu/cordova-plugin-iab/issues"
+  },
+  "homepage": "https://github.com/EricYChu/cordova-plugin-iab#readme"
+}

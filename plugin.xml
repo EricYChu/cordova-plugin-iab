@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plugin id="cordova-plugin-iab"
+        version="1.0.0"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0">
+
+    <name>InAppBrowser</name>
+    <author>Eric Zhu</author>
+    <description>Cordova InAppBrowser Plugin.</description>
+    <license>MIT</license>
+
+    <repo>https://github.com/EricYChu/cordova-plugin-iab.git</repo>
+    <issue>https://github.com/EricYChu/cordova-plugin-iab/issues</issue>
+
+    <engines>
+        <engine name="cordova" version=">=9.0.0" />
+        <engine name="cordova-ios" version=">=6.0.0" />
+        <engine name="cordova-android" version=">=9.0.0" />
+    </engines>
+
+    <js-module name="InAppBrowser" src="www/inappbrowser.js">
+        <clobbers target="InAppBrowser"/>
+    </js-module>
+
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="InAppBrowser">
+                <param name="ios-package" value="CDVInAppBrowser"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVInAppBrowser.h"/>
+        <source-file src="src/ios/CDVInAppBrowser.m"/>
+
+        <framework src="SafariServices.framework" weak="true"/>
+    </platform>
+
+    <platform name="android">
+    <config-file target="config.xml" parent="/*">
+        <feature name="InAppBrowser">
+            <param name="android-package" value="com.customtabplugin.ChromeCustomTabPlugin"/>
+            <param name="onload" value="true" />
+        </feature>
+    </config-file>
+    <framework src="build/android/InAppBrowser-java18.gradle" custom="true" type="gradleReference" />
+    <framework src="androidx.browser:browser:1.2.0" />
+
+    <source-file src="src/android/ChromeCustomTabPlugin.java"             target-dir="src/com/customtabplugin" />
+    <source-file src="src/android/helpers/CustomTabServiceHelper.java"    target-dir="src/com/customtabplugin" />
+    <source-file src="src/android/helpers/CustomTabsHelper.java"          target-dir="src/org/chromium/customtabsclient/shared" />
+    <source-file src="src/android/helpers/ServiceConnection.java"         target-dir="src/org/chromium/customtabsclient/shared" />
+    <source-file src="src/android/helpers/ServiceConnectionCallback.java" target-dir="src/org/chromium/customtabsclient/shared" />
+
+    <source-file src="src/android/res/anim/slide_in_left.xml"   target-dir="res/anim" />
+    <source-file src="src/android/res/anim/slide_in_right.xml"  target-dir="res/anim" />
+    <source-file src="src/android/res/anim/slide_out_left.xml"  target-dir="res/anim" />
+    <source-file src="src/android/res/anim/slide_out_right.xml" target-dir="res/anim" />
+    </platform>
+</plugin>
