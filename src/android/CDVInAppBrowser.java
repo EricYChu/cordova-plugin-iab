@@ -1,4 +1,4 @@
-package com.customtabplugin;
+package cordova.plugins.iab;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,9 +25,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.chromium.customtabsclient.shared.CustomTabsHelper;
 
-public class ChromeCustomTabPlugin extends CordovaPlugin{
+public class CDVInAppBrowser extends CordovaPlugin{
 
-    public static final String TAG = "ChromeCustomTabPlugin";
+    public static final String TAG = "CDVInAppBrowser";
     public static final int CUSTOM_TAB_REQUEST_CODE = 1;
 
     private CustomTabServiceHelper mCustomTabPluginHelper;

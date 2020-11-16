@@ -1,7 +1,4 @@
-// mostly copied from:
-// https://github.com/GoogleChrome/custom-tabs-client/blob/master/demos/src/main/java/org/chromium/customtabsdemos/CustomTabActivityHelper.java
-
-package com.customtabplugin;
+package cordova.plugins.iab;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <plugin id="cordova-plugin-iab"
-        version="1.0.0"
+        version="1.0.2"
         xmlns="http://apache.org/cordova/ns/plugins/1.0">
 
     <name>InAppBrowser</name>
@@ -12,9 +12,9 @@
     <issue>https://github.com/EricYChu/cordova-plugin-iab/issues</issue>
 
     <engines>
-        <engine name="cordova" version=">=9.0.0" />
-        <engine name="cordova-ios" version=">=6.0.0" />
-        <engine name="cordova-android" version=">=9.0.0" />
+        <engine name="cordova" version=">=9.0.0"/>
+        <engine name="cordova-ios" version=">=6.0.0"/>
+        <engine name="cordova-android" version=">=9.0.0"/>
     </engines>
 
     <js-module name="InAppBrowser" src="www/inappbrowser.js">
@@ -35,24 +35,24 @@
     </platform>
 
     <platform name="android">
-    <config-file target="config.xml" parent="/*">
-        <feature name="InAppBrowser">
-            <param name="android-package" value="com.customtabplugin.ChromeCustomTabPlugin"/>
-            <param name="onload" value="true" />
-        </feature>
-    </config-file>
-    <framework src="build/android/InAppBrowser-java18.gradle" custom="true" type="gradleReference" />
-    <framework src="androidx.browser:browser:1.2.0" />
+        <config-file target="config.xml" parent="/*">
+            <feature name="InAppBrowser">
+                <param name="android-package" value="cordova.plugins.iab.CDVInAppBrowser"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+        <framework src="build/android/InAppBrowser-java18.gradle" custom="true" type="gradleReference"/>
+        <framework src="androidx.browser:browser:1.2.0"/>
 
-    <source-file src="src/android/ChromeCustomTabPlugin.java"             target-dir="src/com/customtabplugin" />
-    <source-file src="src/android/helpers/CustomTabServiceHelper.java"    target-dir="src/com/customtabplugin" />
-    <source-file src="src/android/helpers/CustomTabsHelper.java"          target-dir="src/org/chromium/customtabsclient/shared" />
-    <source-file src="src/android/helpers/ServiceConnection.java"         target-dir="src/org/chromium/customtabsclient/shared" />
-    <source-file src="src/android/helpers/ServiceConnectionCallback.java" target-dir="src/org/chromium/customtabsclient/shared" />
+        <source-file src="src/android/CDVInAppBrowser.java" target-dir="src/cordova/plugins/iab"/>
+        <source-file src="src/android/helpers/CustomTabServiceHelper.java" target-dir="src/cordova/plugins/iab"/>
+        <source-file src="src/android/helpers/CustomTabsHelper.java" target-dir="src/org/chromium/customtabsclient/shared"/>
+        <source-file src="src/android/helpers/ServiceConnection.java" target-dir="src/org/chromium/customtabsclient/shared"/>
+        <source-file src="src/android/helpers/ServiceConnectionCallback.java" target-dir="src/org/chromium/customtabsclient/shared"/>
 
-    <source-file src="src/android/res/anim/slide_in_left.xml"   target-dir="res/anim" />
-    <source-file src="src/android/res/anim/slide_in_right.xml"  target-dir="res/anim" />
-    <source-file src="src/android/res/anim/slide_out_left.xml"  target-dir="res/anim" />
-    <source-file src="src/android/res/anim/slide_out_right.xml" target-dir="res/anim" />
+        <source-file src="src/android/res/anim/slide_in_left.xml" target-dir="res/anim"/>
+        <source-file src="src/android/res/anim/slide_in_right.xml" target-dir="res/anim"/>
+        <source-file src="src/android/res/anim/slide_out_left.xml" target-dir="res/anim"/>
+        <source-file src="src/android/res/anim/slide_out_right.xml" target-dir="res/anim"/>
     </platform>
 </plugin>
