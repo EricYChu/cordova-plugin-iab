@@ -34,11 +34,19 @@ public class CDVInAppBrowser extends CordovaPlugin{
     private boolean wasConnected;
     private  CallbackContext callbackContext;
     private Bundle mStartAnimationBundle;
+    private boolean openHttpUrlInInAppBrowser;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-        super.initialize(cordova, webView);
         mCustomTabPluginHelper = new CustomTabServiceHelper(cordova.getActivity());
+        openHttpUrlInInAppBrowser = webView.getPreferences().getBoolean("OpenHttpUrlInInAppBrowser", false);
+        webView.sendJavascript("" +
+                "var _open = window.open;" +
+                "window.open = function(url, windowName, options) {" +
+                "   if (windowName === 'self') return _open(url,windowName,options);" +
+                "   return window.InAppBrowser.show({url:url});" +
+                "}" +
+                "");
     }
 
     @Override
@@ -268,5 +276,14 @@ public class CDVInAppBrowser extends CordovaPlugin{
     public void onDestroy() {
         super.onDestroy();
         mCustomTabPluginHelper.setConnectionCallback(null);
+    }
+
+    @Override
+    public boolean onOverrideUrlLoading(String url) {
+        if (openHttpUrlInInAppBrowser && url.startsWith("http")) {
+            webView.sendJavascript(String.format("window.open('%s', '_blank')", url));
+            return true;
+        }
+        return false;
     }
 }

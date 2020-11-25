@@ -1,8 +1,27 @@
 #import "CDVInAppBrowser.h"
+#import "WebKit/WKNavigationAction.h"
 
 @implementation CDVInAppBrowser
 {
-  SFSafariViewController *vc;
+    SFSafariViewController *vc;
+    bool openHttpUrlInInAppBrowser;
+}
+
+- (void)pluginInitialize {
+    openHttpUrlInInAppBrowser = [[[self.commandDelegate settings] objectForKey:@"OpenHttpUrlInInAppBrowser"] boolValue];
+
+    NSString *jsStr = @""
+    "var _open = window.open;"
+    "window.open = function(url, windowName, options) {"
+    "   if (windowName === 'self') return _open(url,windowName,options);"
+    "   return window.InAppBrowser.show({url:url});"
+    "}"
+    "";
+
+    [self.webViewEngine evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSLog(@"%@: %@", result, error);
+    }];
+
 }
 
 - (void) isAvailable:(CDVInvokedUrlCommand*)command {
@@ -159,6 +178,18 @@
         return [self.activityItemProvider safariViewController:controller activityItemsForURL:URL title:title];
     else
         return nil;
+}
+
+- (BOOL)shouldOverrideLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    if (openHttpUrlInInAppBrowser && navigationType == WKNavigationTypeLinkActivated &&
+        [request.URL.relativeString hasPrefix:@"http"]) {
+        NSString *jsStr = [NSString stringWithFormat:@"window.open('%@', '_blank')", request.URL];
+        [self.webViewEngine evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+            NSLog(@"%@: %@", result, error);
+        }];
+        return true;
+    }
+    return false;
 }
 
 @end
