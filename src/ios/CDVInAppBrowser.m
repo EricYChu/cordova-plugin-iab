@@ -187,9 +187,9 @@
         [self.webViewEngine evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
             NSLog(@"%@: %@", result, error);
         }];
-        return true;
+        return false;
     }
-    return false;
+    return true;
 }
 
 @end
