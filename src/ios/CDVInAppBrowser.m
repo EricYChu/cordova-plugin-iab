@@ -8,7 +8,7 @@
 }
 
 - (void)pluginInitialize {
-    openHttpUrlInInAppBrowser = [[[self.commandDelegate settings] objectForKey:@"OpenHttpUrlInInAppBrowser"] boolValue];
+    openHttpUrlInInAppBrowser = [[self.commandDelegate.settings objectForKey:[@"OpenHttpUrlInInAppBrowser" lowercaseString]] boolValue];
 
     NSString *jsStr = @""
     "var _open = window.open;"

@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-iab",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Cordova InAppBrowser Plugin.",
   "cordova": {
     "id": "cordova-plugin-iab",
