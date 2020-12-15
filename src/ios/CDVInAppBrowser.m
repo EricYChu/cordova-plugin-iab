@@ -9,19 +9,6 @@
 
 - (void)pluginInitialize {
     openHttpUrlInInAppBrowser = [[self.commandDelegate.settings objectForKey:[@"OpenHttpUrlInInAppBrowser" lowercaseString]] boolValue];
-
-    NSString *jsStr = @""
-    "var _open = window.open;"
-    "window.open = function(url, windowName, options) {"
-    "   if (windowName === 'self') return _open(url,windowName,options);"
-    "   return window.InAppBrowser.show({url:url});"
-    "}"
-    "";
-
-    [self.webViewEngine evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        NSLog(@"%@: %@", result, error);
-    }];
-
 }
 
 - (void) isAvailable:(CDVInvokedUrlCommand*)command {

@@ -35,3 +35,12 @@ module.exports = {
     exec(onSuccess, onError, "InAppBrowser", "mayLaunchUrl", [url]);
   }
 };
+var _open = window.open;
+window.open = function (url, windowName, options) {
+   if (windowName === 'self') {
+     return _open(url, windowName, options);
+   }
+   return module.exports.show({
+     url: url
+   });
+}

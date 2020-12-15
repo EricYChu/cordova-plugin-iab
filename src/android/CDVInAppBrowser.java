@@ -40,13 +40,6 @@ public class CDVInAppBrowser extends CordovaPlugin{
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         mCustomTabPluginHelper = new CustomTabServiceHelper(cordova.getActivity());
         openHttpUrlInInAppBrowser = webView.getPreferences().getBoolean("OpenHttpUrlInInAppBrowser", false);
-        webView.sendJavascript("" +
-                "var _open = window.open;" +
-                "window.open = function(url, windowName, options) {" +
-                "   if (windowName === 'self') return _open(url,windowName,options);" +
-                "   return window.InAppBrowser.show({url:url});" +
-                "}" +
-                "");
     }
 
     @Override
